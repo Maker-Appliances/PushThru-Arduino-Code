@@ -27,7 +27,7 @@ int errorButtonCount;
 
 ***************************************************/
 /*
-void validateDeviceParameters(ssid, password, objectID) {
+void validateDeviceParameters(ssid, password, device_id) {
   if (ssid == "") {
         alertSlow();
         Serial.println("No Data In SSID field.  Please Gimme some!"); 

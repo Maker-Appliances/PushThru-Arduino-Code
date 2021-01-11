@@ -10,12 +10,12 @@
 
 /**************************************************
   
-  Pantri PB01 a.k.a:
+  Pantri PB05 a.k.a:
 
-  --- A Bit Pushy ---
+  --- Push Thru ---
 
   ALPHA RELEASE V 1.0.1
-  
+    V 1.0.1 - Updated for 2021 V3 system.
   V 1.0.1 - Updated SSL Fingerprint.
   V 1.0.0 - REST Post description updated to match general API convention, url & certificate altered to official domain.  Numbered V1 - ready for production!
   V 0.3.1 - deepSleep HTTPS release (alpha)
@@ -40,7 +40,10 @@ const char* ssid     = "";    //  This is the name or your wireless network
 
 const char* password = "";      //  This is your wireless network password
 
-const char* objectID = "";      //  This is the objectID issued to your device (on the Pantri device dashboard)
+const char* device_id = "";      //  This is the device ID issued to your device (in the Powered by Pantri App device config)
+
+const char* secret = "";      //  This is the secret you gave your device (in the Powered by Pantri App device config)
+
 
 bool batteryCheck = true;      //  Set this to false if you want to disable the battery check loop
 

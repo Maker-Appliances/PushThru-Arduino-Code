@@ -14,8 +14,8 @@ const char* httpHeaders =    "POST " URI " HTTP/1.1\r\n"
                              "Connection: close\r\n"
                              "Content-Length: "; // + bodyLength + "\r\n"
 // "\r\n"
-const char* body_1 =         "{\"ReceiptBoolean\":true,\"Device\":{\"__type\":\"Pointer\",\"className\":\"Device\",\"objectId\":\"";
-char objectIDstr[11];     // + objectID        (4 294 967 295 + null)
+const char* body_1 =         "{\"ReceiptBoolean\":true,\"Device\":{\"__type\":\"Pointer\",\"className\":\"Device\",\"device_id\":\"";
+char device_idstr[11];     // + device_id        (4 294 967 295 + null)
 const char* body_2 =         "\"},\"macAddress\":\"";
 char MACstr[17 + 1];      // + MACstr          (6 hexadecimal bytes + 5 colons + null)
 const char* body_3 =         "\"}";
@@ -29,9 +29,9 @@ bool httpsPost() {
 
   fixedBodyLength = strlen(body_1) + strlen(body_2) + strlen(body_3) + strlen(MACstr);
 
-  /* Convert the objectID to a string */
+  /* Convert the device_id to a string */
   size_t bodyLength = fixedBodyLength;
-  bodyLength += sprintf(objectIDstr, "%u", objectID);
+  bodyLength += sprintf(device_idstr, "%u", device_id);
 
   /* Connect to the server */
 
@@ -65,7 +65,7 @@ bool httpsPost() {
   sendWithDebug(bodyLength, client);
   sendWithDebug("\r\n\r\n", client);
   sendWithDebug(body_1, client);
-  sendWithDebug(objectID, client);
+  sendWithDebug(device_id, client);
   sendWithDebug(body_2, client);
   sendWithDebug(MACstr, client);
   sendWithDebug(body_3, client);
