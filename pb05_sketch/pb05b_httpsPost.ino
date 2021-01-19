@@ -116,7 +116,7 @@ bool checkHTTPstatusOK(WiFiClientSecure &client)
 
   // read all data
 
-  String payload = client.readStringUntil('\n');  // Get the response
+  String payload = client.readStringUntil('\n'); // Get the response
   Serial.println("");
   Serial.println("***RETURN PAYLOAD***");
   Serial.println(payload);

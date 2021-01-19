@@ -1,4 +1,5 @@
-void setup() {
+void setup()
+{
 
   pinMode(buzzer, OUTPUT);
   pinMode(LED, OUTPUT);
@@ -6,7 +7,8 @@ void setup() {
   pinMode(alertLED, OUTPUT);
   Serial.begin(115200);
   Serial.println(" ");
-  if (batteryCheck == true) {
+  if (batteryCheck == true)
+  {
     Serial.println("Checking my battery...");
     battery_level();
   }
@@ -14,9 +16,8 @@ void setup() {
   workingSlowSilent();
   Serial.println("Night!");
   ESP.deepSleep(0);
-  
 }
 
-void loop() {
+void loop(){
 
 };

@@ -1,5 +1,7 @@
-void wifiErrorDiag() {
-  if (WiFi.status() == WL_CONNECT_FAILED) {
+void wifiErrorDiag()
+{
+  if (WiFi.status() == WL_CONNECT_FAILED)
+  {
     Serial.println("");
     Serial.println("Connection Failed.  Possibly a wrong WIFI Password mate?  Sort it out will ya.");
     Serial.println("");
@@ -7,9 +9,9 @@ void wifiErrorDiag() {
     // Two Red Beeps
     alertFast();
     alertFast();
-
   }
-  else if (WiFi.status() == WL_NO_SSID_AVAIL) {
+  else if (WiFi.status() == WL_NO_SSID_AVAIL)
+  {
     Serial.println("");
     Serial.print("I can't see \"");
     Serial.print(ssid);
@@ -21,7 +23,8 @@ void wifiErrorDiag() {
     alertFast();
     alertFast();
   }
-  else {
+  else
+  {
     Serial.println("");
     Serial.println("Not Connected To WiFi.  Will try again shortly.");
     Serial.println("");
@@ -34,10 +37,10 @@ void wifiErrorDiag() {
   }
 }
 
-
 int wifiRetry = 1;
 
-void connectToWifiSilent() {
+void connectToWifiSilent()
+{
   Serial.print("");
   Serial.print("Connecting to ");
   Serial.println(ssid);
@@ -51,7 +54,8 @@ void connectToWifiSilent() {
   Serial.println("");
   Serial.println("Connection timeout in: ");
 
-  while (WiFi.status() != WL_CONNECTED && connectionCount > 0) {
+  while (WiFi.status() != WL_CONNECTED && connectionCount > 0)
+  {
 
     workingFastSilent();
     delay(400);
@@ -62,7 +66,8 @@ void connectToWifiSilent() {
     Serial.println(", ");
   }
 
-  if (WiFi.status() == WL_CONNECTED) {
+  if (WiFi.status() == WL_CONNECTED)
+  {
 
     Serial.println("");
     Serial.println("WiFi connected");
@@ -75,20 +80,22 @@ void connectToWifiSilent() {
     httpsPost();
   }
 
-  else {
+  else
+  {
 
     wifiErrorDiag();
-
   };
 
-  if (wifiRetry < 2) {
+  if (wifiRetry < 2)
+  {
 
     //Now try to connect to WIFI again (silently)
-    wifiRetry ++;
+    wifiRetry++;
 
     timeoutAlertCount = 1;
-    
-    while (timeoutAlertCount <= 3) {
+
+    while (timeoutAlertCount <= 3)
+    {
       timeoutAlertCount++;
     }
 
@@ -97,10 +104,10 @@ void connectToWifiSilent() {
     delay(15000);
 
     connectToWifiSilent();
-
   }
 
-  if (wifiRetry == 2) {
+  if (wifiRetry == 2)
+  {
     delay(2000);
     Serial.println("Sorry, I just can't connect.  I give up.  I'm going back to sleep.  Check my settings & your wifi setup please.");
     digitalWrite(alertLED, HIGH);
@@ -116,12 +123,11 @@ void connectToWifiSilent() {
     workingSlowSilent();
     ESP.deepSleep(0);
   }
-
 }
 
-
 // use the ssid and password to connect to the your WiFi
-void connectToWifi() {
+void connectToWifi()
+{
 
   Serial.print("");
   Serial.print("Connecting to ");
@@ -139,7 +145,8 @@ void connectToWifi() {
   Serial.println("Connection timeout in: ");
 
   // loop to check if connected to the wi fi network
-  while (WiFi.status() != WL_CONNECTED && connectionCount > 0) {
+  while (WiFi.status() != WL_CONNECTED && connectionCount > 0)
+  {
     workingFast();
     delay(400);
     connectionCount--;
@@ -150,7 +157,8 @@ void connectToWifi() {
   }
 
   // we're connected to the wi fi network
-  if (WiFi.status() == WL_CONNECTED) {
+  if (WiFi.status() == WL_CONNECTED)
+  {
 
     Serial.println("");
     Serial.println("WiFi connected");
@@ -163,7 +171,8 @@ void connectToWifi() {
     //Now to push a REST API Post to the server
     httpsPost();
   }
-  else { // else we never connected to the network, inform the user of the error using the buzzer and LED
+  else
+  { // else we never connected to the network, inform the user of the error using the buzzer and LED
 
     wifiErrorDiag();
     delay(1000);

@@ -36,24 +36,22 @@
 
 // Insert your personal WLAN device (home router, etc) credentials inside the speach marks.
 
-const char* ssid     = "";    //  This is the name or your wireless network
+const char *ssid = ""; //  This is the name or your wireless network
 
-const char* password = "";      //  This is your wireless network password
+const char *password = ""; //  This is your wireless network password
 
-const char* device_id = "";      //  This is the device ID issued to your device (in the Powered by Pantri App device config)
+const char *device_id = ""; //  This is the device ID issued to your device (in the Powered by Pantri App device config)
 
-const char* secret = "";      //  This is the secret you gave your device (in the Powered by Pantri App device config)
+const char *secret = ""; //  This is the secret you gave your device (in the Powered by Pantri App device config)
 
-
-bool batteryCheck = true;      //  Set this to false if you want to disable the battery check loop
-
+bool batteryCheck = true; //  Set this to false if you want to disable the battery check loop
 
 //  This section defines pins that link your Adafruit Arduino Huzzah ESP8266 Feather board to your button, buzzer & LED.
 
-int buzzer = 15;          // This is the pin output leading to your Buzzer
-int LED = 12;             // This is the pin output leading to your blue status LED
-int successLED = 14;      // This is the pin output leading to your green success LED
-int alertLED = 13;        // This is the pin output leading to the red alert LED
+int buzzer = 15;     // This is the pin output leading to your Buzzer
+int LED = 12;        // This is the pin output leading to your blue status LED
+int successLED = 14; // This is the pin output leading to your green success LED
+int alertLED = 13;   // This is the pin output leading to the red alert LED
 
 /***************************************************
 
