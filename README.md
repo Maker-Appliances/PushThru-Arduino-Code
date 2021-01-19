@@ -23,13 +23,18 @@ We love to use open source tech, it’s what we are all about. One of our favour
 
 Arduino is an open source platform for makers and inventors like you. The make awesome programmable boards, and have a free and easy to use programming ‘environment’, the Arduino IDE.
 
-![https://images.squarespace-cdn.com/content/v1/5c029f77ee1759938a3b5dd0/1548931128015-RJSL7C2EYQ64NDXIWYAS/ke17ZwdGBToddI8pDm48kK78QEXTH8U_h8zttH-XwRFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIyVT2tnE36Rj3wuj3HoAj-B5kR_3Rcrrl1Cm6ebmb2mA/DownloadingArduinoIDE_Final.gif?format=2500w](https://images.squarespace-cdn.com/content/v1/5c029f77ee1759938a3b5dd0/1548931128015-RJSL7C2EYQ64NDXIWYAS/ke17ZwdGBToddI8pDm48kK78QEXTH8U_h8zttH-XwRFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIyVT2tnE36Rj3wuj3HoAj-B5kR_3Rcrrl1Cm6ebmb2mA/DownloadingArduinoIDE_Final.gif?format=2500w)
+![](https://images.squarespace-cdn.com/content/v1/5c029f77ee1759938a3b5dd0/1548931128015-RJSL7C2EYQ64NDXIWYAS/ke17ZwdGBToddI8pDm48kK78QEXTH8U_h8zttH-XwRFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIyVT2tnE36Rj3wuj3HoAj-B5kR_3Rcrrl1Cm6ebmb2mA/DownloadingArduinoIDE_Final.gif?format=2500w)
 
 *Go to [arduino.cc](https://www.arduino.cc/en/software) to get hold of the latest Arduino IDE for your desktop.*
 
 ## Add the Adafruit Huzzah ESP8266 board
 
 The Arduino IDE has a really great way to add new programmable boards, the ‘Boards Manager’. This allows you to quickly add new Arduino compatible boards to your IDE!
+
+### Adding additional board manager via URL
+
+1. In your Arduino IDE, go to **File -> Preferences**
+2. Enter `http://arduino.esp8266.com/stable/package_esp8266com_index.json` into the **“Additional Boards Manager URLs”** field. Then, click the **“OK”** button
 
 ![](https://images.squarespace-cdn.com/content/v1/5c029f77ee1759938a3b5dd0/1548858010165-DWUXC7GCITO3WIDP3YBV/ke17ZwdGBToddI8pDm48kJ0lej6MlCqKAUx1EqBpSQQUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcE79ZA1emBlttGqUBJ5k1Qhla88IYte9c1OHrE4ZEhBPbvKCViBqYtP1YD9ZsRUp_/Arduino_BoardManagerSetup.gif?format=2500w)
 
