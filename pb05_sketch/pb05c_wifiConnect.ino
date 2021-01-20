@@ -128,10 +128,7 @@ void connectToWifiSilent()
 // use the ssid and password to connect to the your WiFi
 void connectToWifi()
 {
-
-  Serial.print("");
-  Serial.print("Connecting to ");
-  Serial.println(ssid);
+  Serial.printf("\nConnecting to %s\n", ssid);
 
   // Disable AP_SSID publication in Client mode
   WiFi.mode(WIFI_STA);
@@ -140,9 +137,7 @@ void connectToWifi()
   WiFi.begin(ssid, password);
 
   connectionCount = 30;
-  Serial.println("");
-
-  Serial.println("Connection timeout in: ");
+  Serial.println("\nConnection timeout in: ");
 
   // loop to check if connected to the wi fi network
   while (WiFi.status() != WL_CONNECTED && connectionCount > 0)
@@ -159,23 +154,21 @@ void connectToWifi()
   // we're connected to the wi fi network
   if (WiFi.status() == WL_CONNECTED)
   {
-
-    Serial.println("");
-    Serial.println("WiFi connected");
-    Serial.println("IP address: ");
+    Serial.printf("\nWiFi connected\nIP address: ");
     Serial.println(WiFi.localIP());
     Serial.println("Setup Complete");
 
     successSlow();
 
     //Now to push a REST API Post to the server
-    httpsPost();
+    //httpsPost();
   }
   else
   { // else we never connected to the network, inform the user of the error using the buzzer and LED
-
     wifiErrorDiag();
     delay(1000);
+    
+    Serial.println("Try to connect WiFi silently...");
     connectToWifiSilent();
   }
 }

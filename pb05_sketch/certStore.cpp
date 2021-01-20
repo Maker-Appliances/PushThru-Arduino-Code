@@ -1,5 +1,5 @@
 #include "certStore.h"
-#include "ca/certificates.h"
+#include "certificates.h"
 #include <memory>
 
 namespace BearSSL {
@@ -11,6 +11,8 @@ void CertStore::installCertStore(br_x509_minimal_context *ctx) {
 const br_x509_trust_anchor *CertStore::findHashedTA(void *ctx, void *hashed_dn, size_t len) {
     //compare sha256 from index file with hashed_dn
     //then return certificate
+
+    Serial.println("CertStore::findHashedTA");
 
     CertStore *cs = static_cast<CertStore *>(ctx);
 

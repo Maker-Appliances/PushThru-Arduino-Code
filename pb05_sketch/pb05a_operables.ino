@@ -6,6 +6,9 @@
 
 ***************************************************/
 
+#define DELAY_FAST_ms (50)
+#define DELAY_SLOW_ms (250)
+
 int buttonStatus = 0;
 int oldButtonStatus = 0;
 int blevel;
@@ -14,11 +17,17 @@ float xbvolt;
 int level;
 int xlevel;
 int levelUnMod;
-int var;
 int connectionCount;
 int timeoutAlertCount;
 int errorCount;
 int errorButtonCount;
+
+enum IndicationType
+{
+  Work = 0,
+  Success,
+  Alert
+};
 
 /***************************************************
 
@@ -26,119 +35,113 @@ int errorButtonCount;
 
 ***************************************************/
 /*
-void validateDeviceParameters(ssid, password, device_id) {
+  void validateDeviceParameters(ssid, password, device_id) {
   if (ssid == "") {
         alertSlow();
-        Serial.println("No Data In SSID field.  Please Gimme some!"); 
+        Serial.println("No Data In SSID field.  Please Gimme some!");
   }
-}
+  }
 */
+
+
+void Indicate(IndicationType type, int pauseLenght = 50, bool silent = false)
+{
+  int led = 0;
+
+  switch (type)
+  {
+    case Work:
+      led = LED;
+      break;
+    case Success:
+      led = successLED;
+      break;
+    case Alert:
+      led = alertLED;
+      break;
+    default:
+      return;
+  }
+
+  digitalWrite(led, HIGH);
+  if (!silent) digitalWrite(buzzer, HIGH);
+  delay(pauseLenght);
+  if (!silent) digitalWrite(buzzer, LOW);
+  digitalWrite(led, LOW);
+  delay(pauseLenght);
+}
+
+void Working(bool slow = false, bool silent = false)
+{
+  Indicate(Work, slow ? DELAY_SLOW_ms : DELAY_FAST_ms, silent);
+}
+
+void Successing(bool slow = false, bool silent = false)
+{
+  Indicate(Success, slow ? DELAY_SLOW_ms : DELAY_FAST_ms, silent);
+}
+
+void Alerting(bool slow = false, bool silent = false)
+{
+  Indicate(Alert, slow ? DELAY_SLOW_ms : DELAY_FAST_ms, silent);
+}
+
 void workingFast()
 {
-  digitalWrite(LED, HIGH);
-  digitalWrite(buzzer, HIGH);
-  delay(50);
-  digitalWrite(buzzer, LOW);
-  digitalWrite(LED, LOW);
-  delay(50);
+  Working();
 }
 
 void successFast()
 {
-  digitalWrite(successLED, HIGH);
-  digitalWrite(buzzer, HIGH);
-  delay(50);
-  digitalWrite(buzzer, LOW);
-  digitalWrite(successLED, LOW);
-  delay(50);
+  Successing();
 }
 
 void alertFast()
 {
-  digitalWrite(alertLED, HIGH);
-  digitalWrite(buzzer, HIGH);
-  delay(50);
-  digitalWrite(buzzer, LOW);
-  digitalWrite(alertLED, LOW);
-  delay(50);
+  Alerting();
 }
 
 void workingSlow()
 {
-  digitalWrite(LED, HIGH);
-  digitalWrite(buzzer, HIGH);
-  delay(250);
-  digitalWrite(buzzer, LOW);
-  digitalWrite(LED, LOW);
-  delay(250);
+  Working(true);
 }
 
 void successSlow()
 {
-  digitalWrite(successLED, HIGH);
-  digitalWrite(buzzer, HIGH);
-  delay(250);
-  digitalWrite(buzzer, LOW);
-  digitalWrite(successLED, LOW);
-  delay(250);
+  Successing(true);
 }
 
 void alertSlow()
 {
-  digitalWrite(alertLED, HIGH);
-  digitalWrite(buzzer, HIGH);
-  delay(250);
-  digitalWrite(buzzer, LOW);
-  digitalWrite(alertLED, LOW);
-  delay(250);
+  Alerting(true);
 }
 
 void workingFastSilent()
 {
-  digitalWrite(LED, HIGH);
-  delay(75);
-  digitalWrite(LED, LOW);
-  delay(25);
+  Working(false, true);
 }
 
 void successFastSilent()
 {
-  digitalWrite(successLED, HIGH);
-  delay(75);
-  digitalWrite(successLED, LOW);
-  delay(25);
+  Successing(false, true);
 }
 
 void alertFastSilent()
 {
-  digitalWrite(alertLED, HIGH);
-  delay(75);
-  digitalWrite(alertLED, LOW);
-  delay(25);
+  Alerting(false, true);
 }
 
 void workingSlowSilent()
 {
-  digitalWrite(LED, HIGH);
-  delay(400);
-  digitalWrite(LED, LOW);
-  delay(100);
+  Working(true, true);
 }
 
 void successSlowSilent()
 {
-  digitalWrite(successLED, HIGH);
-  digitalWrite(buzzer, HIGH);
-  delay(400);
-  digitalWrite(successLED, LOW);
-  delay(100);
+  Successing(true, true);
 }
 
 void alertSlowSilent()
 {
-  digitalWrite(alertLED, HIGH);
-  digitalWrite(buzzer, HIGH);
-  delay(400);
-  digitalWrite(alertLED, LOW);
-  delay(100);
+  Alerting(true, true);
 }
