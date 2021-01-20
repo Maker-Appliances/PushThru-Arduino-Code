@@ -37,7 +37,6 @@ public:
 private : 
     BearSSL::CertStore certStore;
 
-public:
     HTTPClient *http;
     WiFiClient *client;
     BearSSL::WiFiClientSecure *httpsClient;

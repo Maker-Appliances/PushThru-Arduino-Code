@@ -77,7 +77,7 @@ void connectToWifiSilent()
     successSlow();
     successSlow();
     //Now to push a REST API Post to the server
-    httpsPost();
+    //httpsPost();
   }
 
   else
