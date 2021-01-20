@@ -1,3 +1,4 @@
+#include "fetch.h"
 void setup()
 {
 
@@ -16,8 +17,17 @@ void setup()
   workingSlowSilent();
   Serial.println("Night!");
   ESP.deepSleep(0);
+
+  
+
 }
 
 void loop(){
+  const char* host = "https://api.github.com";
+  String payload;
+if (fetch.GET(host) == HTTP_CODE_OK)    
+    payload = fetch.http->getString();    
+
+fetch.clean();
 
 };
