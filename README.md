@@ -13,7 +13,7 @@ What you need:
 * Computer
 * Arduino IDE app ([found here](https://www.arduino.cc/en/software))
 
-![](https://images.squarespace-cdn.com/content/v1/5c029f77ee1759938a3b5dd0/1548763765973-QG0PMBEH6W17WT7F2EM2/ke17ZwdGBToddI8pDm48kNiEM88mrzHRsd1mQ3bxVct7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0s0XaMNjCqAzRibjnE_wBlkZ2axuMlPfqFLWy-3Tjp4nKScCHg1XF4aLsQJlo6oYbA/IMG_0564_batch.jpg?format=1000w)
+![](.resources/IMG_0564_batch.jpg)
 
 ## Download all the stuff
 
@@ -23,7 +23,7 @@ We love to use open source tech, it’s what we are all about. One of our favour
 
 Arduino is an open source platform for makers and inventors like you. The make awesome programmable boards, and have a free and easy to use programming ‘environment’, the Arduino IDE.
 
-![](https://images.squarespace-cdn.com/content/v1/5c029f77ee1759938a3b5dd0/1548931128015-RJSL7C2EYQ64NDXIWYAS/ke17ZwdGBToddI8pDm48kK78QEXTH8U_h8zttH-XwRFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIyVT2tnE36Rj3wuj3HoAj-B5kR_3Rcrrl1Cm6ebmb2mA/DownloadingArduinoIDE_Final.gif?format=2500w)
+![Downloading and installing the Arduino IDE](.resources/DownloadingArduinoIDE_Final.gif)
 
 *Go to [arduino.cc](https://www.arduino.cc/en/software) to get hold of the latest Arduino IDE for your desktop.*
 
@@ -36,7 +36,7 @@ The Arduino IDE has a really great way to add new programmable boards, the ‘Bo
 1. In your Arduino IDE, go to **File -> Preferences**
 2. Enter `http://arduino.esp8266.com/stable/package_esp8266com_index.json` into the **“Additional Boards Manager URLs”** field. Then, click the **“OK”** button
 
-![](https://images.squarespace-cdn.com/content/v1/5c029f77ee1759938a3b5dd0/1548858010165-DWUXC7GCITO3WIDP3YBV/ke17ZwdGBToddI8pDm48kJ0lej6MlCqKAUx1EqBpSQQUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcE79ZA1emBlttGqUBJ5k1Qhla88IYte9c1OHrE4ZEhBPbvKCViBqYtP1YD9ZsRUp_/Arduino_BoardManagerSetup.gif?format=2500w)
+![Adding the Adafruit Huzzah ESP8266 board](.resources/Arduino_BoardManagerSetup.gif)
 
 *Go to Tools > Board > Board Manager, then search for ‘ESP8266’ make sure to use 2.4.2, not the beta versions.*
 
@@ -50,14 +50,14 @@ The two libraries are:
 1. ArduinoJSON
 2. WiFi
 
-![](https://images.squarespace-cdn.com/content/v1/5c029f77ee1759938a3b5dd0/1548932413774-CSYY9MHJZI2PJ6EHJVLU/ke17ZwdGBToddI8pDm48kK78QEXTH8U_h8zttH-XwRFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIyVT2tnE36Rj3wuj3HoAj-B5kR_3Rcrrl1Cm6ebmb2mA/Arduino_SettingUpLibrariesPushThru.gif?format=2500w)
+![Adding the libraries needed for your Push-Thru](.resources/Arduino_SettingUpLibrariesPushThru.gif)
 
 *Go to Sketch > Include Library > Manage Libraries… to add new libraries to the Arduino IDE*
 
-##Download the code for your Push-Thru
+## Download the code for your Push-Thru
 Github is a website that allows us to share all of our open source projects and code. You can head over to our repositories and get a copy of the code to put onto your Push-Thru button.
 
-![](https://images.squarespace-cdn.com/content/v1/5c029f77ee1759938a3b5dd0/1548858733423-S3QWUJLCG49BLVMOKIP5/ke17ZwdGBToddI8pDm48kJ0lej6MlCqKAUx1EqBpSQQUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcE79ZA1emBlttGqUBJ5k1Qhla88IYte9c1OHrE4ZEhBPbvKCViBqYtP1YD9ZsRUp_/Arduino_DownloadingGitHubCode.gif?format=2500w)
+![Downloading the code for your Push-Thru](.resources/Arduino_DownloadingGitHubCode.gif)
 
 *Click on the green* **↧ CODE ↓** *button at the top of this page to get the code for your button.  If you don't know how git repo's work, just select Download ZIP from the dropdown.*
 
@@ -71,4 +71,4 @@ Navigate through to add a device.  In there you should see Maker Appliances as a
 ## Load the code and push that button!
 Now all we need to do is to modify the code (adding your unique device ID and your wifi settings ), add the MAC address to the Pantri Dashboard, and test the button!
 
-![](https://images.squarespace-cdn.com/content/v1/5c029f77ee1759938a3b5dd0/1548946433168-ITYLPFT709N8TIZKV7P1/ke17ZwdGBToddI8pDm48kK78QEXTH8U_h8zttH-XwRFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIyVT2tnE36Rj3wuj3HoAj-B5kR_3Rcrrl1Cm6ebmb2mA/PushinthePushThruSMALL.gif?format=2500w)
+![Loading the code and pushing that button!](.resources/PushinthePushThruSMALL.gif)
