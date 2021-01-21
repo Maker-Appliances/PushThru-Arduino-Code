@@ -43,7 +43,6 @@ enum IndicationType
   }
 */
 
-
 void Indicate(IndicationType type, int pauseLenght = 50, bool silent = false)
 {
   int led = 0;
@@ -64,9 +63,11 @@ void Indicate(IndicationType type, int pauseLenght = 50, bool silent = false)
   }
 
   digitalWrite(led, HIGH);
-  if (!silent) digitalWrite(buzzer, HIGH);
+  if (!silent)
+    digitalWrite(buzzer, HIGH);
   delay(pauseLenght);
-  if (!silent) digitalWrite(buzzer, LOW);
+  if (!silent)
+    digitalWrite(buzzer, LOW);
   digitalWrite(led, LOW);
   delay(pauseLenght);
 }

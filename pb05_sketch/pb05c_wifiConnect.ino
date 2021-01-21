@@ -167,7 +167,7 @@ void connectToWifi()
   { // else we never connected to the network, inform the user of the error using the buzzer and LED
     wifiErrorDiag();
     delay(1000);
-    
+
     Serial.println("Try to connect WiFi silently...");
     connectToWifiSilent();
   }

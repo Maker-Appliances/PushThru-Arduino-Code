@@ -23,23 +23,19 @@ void setup()
   timeSync.begin();
 }
 
-void loop() {
-  const char* host = "https://httpbin.org/get";
-  String payload;
-
-  fetch.begin(host);
-  fetch.addHeader("Host", "httpbin.org");
-  int result = fetch.GET();
-  if (result == HTTP_CODE_OK)
+void loop()
+{
+  Serial.println("Try make Pantri post request ...");
+  uint8_t macAddress[WL_MAC_ADDR_LENGTH];
+  WiFi.macAddress(macAddress);
+  if (MakePantriPostRequest(macAddress))
   {
-    payload = fetch.readString();
-    Serial.println(payload);
+    Serial.println("Pantri post request succeeded!");
   }
   else
   {
-    Serial.printf("Request failed: %d\n", result);
+    Serial.println("Pantri post request failed!");
   }
-  fetch.clean();
 
   Serial.println("Night!");
   ESP.deepSleep(0);

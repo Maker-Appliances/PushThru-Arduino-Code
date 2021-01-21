@@ -2,129 +2,129 @@
 
 #include <WiFiClientSecureBearSSL.h>
 
-void HTTPRequest::begin(String url, bool useMFLN) 
+void HTTPRequest::begin(String url, bool useMFLN)
 {
-    http = new HTTPClient();
+  http = new HTTPClient();
 
-    if (url[4] == 's')
+  if (url[4] == 's')
+  {
+    httpsClient = new BearSSL::WiFiClientSecure();
+
+    //try MFLN to reduce memory need
+    if (useMFLN && httpsClient->probeMaxFragmentLength(url, 443, 512))
     {
-        httpsClient = new BearSSL::WiFiClientSecure();
-
-        //try MFLN to reduce memory need
-        if (useMFLN && httpsClient->probeMaxFragmentLength(url, 443, 512))
-        {
-            Serial.println(PSTR("MFLN supported"));
-            httpsClient->setBufferSizes(512, 512);
-        }
-
-        httpsClient->setCertStore(&certStore);
-        http->begin(*httpsClient, url);
-                
-        client = httpsClient;
-    }
-    else
-    {
-        client = new WiFiClient();
-        http->begin(*client, url);
+      Serial.println(PSTR("MFLN supported"));
+      httpsClient->setBufferSizes(512, 512);
     }
 
-    http->setReuse(false);
+    httpsClient->setCertStore(&certStore);
+    http->begin(*httpsClient, url);
+
+    client = httpsClient;
+  }
+  else
+  {
+    client = new WiFiClient();
+    http->begin(*client, url);
+  }
+
+  http->setReuse(false);
 }
 
 int HTTPRequest::GET(String url)
 {
-    begin(url);
-    return http->GET();
+  begin(url);
+  return http->GET();
 }
 
 int HTTPRequest::GET()
 {
-    return http->GET();
+  return http->GET();
 }
 
 int HTTPRequest::POST(String url, String body)
 {
-    begin(url);
-    return http->POST(body);
+  begin(url);
+  return http->POST(body);
 }
 
 int HTTPRequest::POST(String body)
 {
-    return http->POST(body);
+  return http->POST(body);
 }
 
 int HTTPRequest::PUT(String url, String body)
 {
-    begin(url);
-    return http->PUT(body);
+  begin(url);
+  return http->PUT(body);
 }
 
 int HTTPRequest::PUT(String body)
 {
-    return http->PUT(body);
+  return http->PUT(body);
 }
 
 int HTTPRequest::PATCH(String url, String body)
 {
-    begin(url);
-    return http->PATCH(body);
+  begin(url);
+  return http->PATCH(body);
 }
 
 int HTTPRequest::PATCH(String body)
 {
-    return http->PATCH(body);
+  return http->PATCH(body);
 }
 
 int HTTPRequest::DELETE(String url)
 {
-    begin(url);
-    return http->sendRequest("DELETE");
+  begin(url);
+  return http->sendRequest("DELETE");
 }
 
 int HTTPRequest::DELETE()
 {
-    return http->sendRequest("DELETE");
+  return http->sendRequest("DELETE");
 }
 
 bool HTTPRequest::busy()
 {
-    return (client->connected() || client->available());
+  return (client->connected() || client->available());
 }
 
 bool HTTPRequest::available()
 {
-    return client->available();
+  return client->available();
 }
 
 uint8_t HTTPRequest::read()
 {
-    return client->read();
+  return client->read();
 }
 
 String HTTPRequest::readString()
 {
-    return client->readString();
+  return client->readString();
 }
 
 void HTTPRequest::clean()
 {
-    delete http;
-    delete client;
+  delete http;
+  delete client;
 }
 
-void HTTPRequest::setAuthorization(const char * user, const char * password)
+void HTTPRequest::setAuthorization(const char *user, const char *password)
 {
-    http->setAuthorization(user, password);
+  http->setAuthorization(user, password);
 }
 
-void HTTPRequest::setAuthorization(const char * auth)
+void HTTPRequest::setAuthorization(const char *auth)
 {
-    http->setAuthorization(auth);
+  http->setAuthorization(auth);
 }
 
 void HTTPRequest::addHeader(String name, String value)
 {
-    http->addHeader(name, value);
+  http->addHeader(name, value);
 }
 
 HTTPRequest fetch;

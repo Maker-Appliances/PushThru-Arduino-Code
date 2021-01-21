@@ -9,11 +9,13 @@
 #include <BearSSLHelpers.h>
 #include <bearssl/bearssl.h>
 
-namespace BearSSL {
+namespace BearSSL
+{
 
-class CertStore {
+class CertStore
+{
   public:
-    CertStore() { };   
+    CertStore() {};
 
     // Installs the cert store into the X509 decoder (normally via static function callbacks)
     void installCertStore(br_x509_minimal_context *ctx);
@@ -26,7 +28,6 @@ class CertStore {
     static void freeHashedTA(void *ctx, const br_x509_trust_anchor *ta);
 };
 
-};
+}; // namespace BearSSL
 
 #endif
-

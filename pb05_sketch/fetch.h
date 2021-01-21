@@ -8,8 +8,7 @@
 
 class HTTPRequest
 {
-
-public:
+  public:
     void clean();
 
     void begin(String url, bool useMFLN = false);
@@ -24,17 +23,17 @@ public:
     int PATCH(String body);
     int DELETE(String url);
     int DELETE();
-    
+
     bool busy();
     bool available();
     uint8_t read();
     String readString();
-    
-    void setAuthorization(const char * user, const char * password);
-    void setAuthorization(const char * auth);
+
+    void setAuthorization(const char *user, const char *password);
+    void setAuthorization(const char *auth);
     void addHeader(String name, String value);
 
-private : 
+  private:
     BearSSL::CertStore certStore;
 
     HTTPClient *http;
