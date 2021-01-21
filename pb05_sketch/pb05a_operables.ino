@@ -1,11 +1,13 @@
 // Do not alter anything within this TAB (unless you want to)!
 
-
 /***************************************************
 
   // Definitions
 
 ***************************************************/
+
+#define DELAY_FAST_ms (50)
+#define DELAY_SLOW_ms (250)
 
 int buttonStatus = 0;
 int oldButtonStatus = 0;
@@ -15,11 +17,17 @@ float xbvolt;
 int level;
 int xlevel;
 int levelUnMod;
-int var;
 int connectionCount;
 int timeoutAlertCount;
 int errorCount;
 int errorButtonCount;
+
+enum IndicationType
+{
+  Work = 0,
+  Success,
+  Alert
+};
 
 /***************************************************
 
@@ -27,108 +35,114 @@ int errorButtonCount;
 
 ***************************************************/
 /*
-void validateDeviceParameters(ssid, password, device_id) {
+  void validateDeviceParameters(ssid, password, device_id) {
   if (ssid == "") {
         alertSlow();
-        Serial.println("No Data In SSID field.  Please Gimme some!"); 
+        Serial.println("No Data In SSID field.  Please Gimme some!");
   }
-}
+  }
 */
-void workingFast() {
-digitalWrite(LED, HIGH);
-digitalWrite(buzzer, HIGH);
-delay (50);
-digitalWrite(buzzer, LOW);
-digitalWrite(LED, LOW);
-delay (50);
+
+void Indicate(IndicationType type, int pauseLenght = 50, bool silent = false)
+{
+  int led = 0;
+
+  switch (type)
+  {
+    case Work:
+      led = LED;
+      break;
+    case Success:
+      led = successLED;
+      break;
+    case Alert:
+      led = alertLED;
+      break;
+    default:
+      return;
+  }
+
+  digitalWrite(led, HIGH);
+  if (!silent)
+    digitalWrite(buzzer, HIGH);
+  delay(pauseLenght);
+  if (!silent)
+    digitalWrite(buzzer, LOW);
+  digitalWrite(led, LOW);
+  delay(pauseLenght);
 }
 
-void successFast() {
-digitalWrite(successLED, HIGH);
-digitalWrite(buzzer, HIGH);
-delay (50);
-digitalWrite(buzzer, LOW);
-digitalWrite(successLED, LOW);
-delay (50);
+void Working(bool slow = false, bool silent = false)
+{
+  Indicate(Work, slow ? DELAY_SLOW_ms : DELAY_FAST_ms, silent);
 }
 
-void alertFast() {
-digitalWrite(alertLED, HIGH);
-digitalWrite(buzzer, HIGH);
-delay (50);
-digitalWrite(buzzer, LOW);
-digitalWrite(alertLED, LOW);
-delay (50);
+void Successing(bool slow = false, bool silent = false)
+{
+  Indicate(Success, slow ? DELAY_SLOW_ms : DELAY_FAST_ms, silent);
 }
 
-void workingSlow() {
-digitalWrite(LED, HIGH);
-digitalWrite(buzzer, HIGH);
-delay (250);
-digitalWrite(buzzer, LOW);
-digitalWrite(LED, LOW);
-delay (250);
+void Alerting(bool slow = false, bool silent = false)
+{
+  Indicate(Alert, slow ? DELAY_SLOW_ms : DELAY_FAST_ms, silent);
 }
 
-void successSlow() {
-digitalWrite(successLED, HIGH);
-digitalWrite(buzzer, HIGH);
-delay (250);
-digitalWrite(buzzer, LOW);
-digitalWrite(successLED, LOW);
-delay (250);
+void workingFast()
+{
+  Working();
 }
 
-void alertSlow() {
-digitalWrite(alertLED, HIGH);
-digitalWrite(buzzer, HIGH);
-delay (250);
-digitalWrite(buzzer, LOW);
-digitalWrite(alertLED, LOW);
-delay (250);
-
+void successFast()
+{
+  Successing();
 }
 
-void workingFastSilent() {
-digitalWrite(LED, HIGH);
-delay (75);
-digitalWrite(LED, LOW);
-delay (25);
+void alertFast()
+{
+  Alerting();
 }
 
-void successFastSilent() {
-digitalWrite(successLED, HIGH);
-delay (75);
-digitalWrite(successLED, LOW);
-delay (25);
+void workingSlow()
+{
+  Working(true);
 }
 
-void alertFastSilent() {
-digitalWrite(alertLED, HIGH);
-delay (75);
-digitalWrite(alertLED, LOW);
-delay (25);
+void successSlow()
+{
+  Successing(true);
 }
 
-void workingSlowSilent() {
-digitalWrite(LED, HIGH);
-delay (400);
-digitalWrite(LED, LOW);
-delay (100);
+void alertSlow()
+{
+  Alerting(true);
 }
 
-void successSlowSilent() {
-digitalWrite(successLED, HIGH);
-digitalWrite(buzzer, HIGH);
-delay (400);
-digitalWrite(successLED, LOW);
-delay (100);
+void workingFastSilent()
+{
+  Working(false, true);
 }
 
-void alertSlowSilent() {
-digitalWrite(alertLED, HIGH);
-digitalWrite(buzzer, HIGH);
-delay (400);
-digitalWrite(alertLED, LOW);
-delay (100);
+void successFastSilent()
+{
+  Successing(false, true);
+}
+
+void alertFastSilent()
+{
+  Alerting(false, true);
+}
+
+void workingSlowSilent()
+{
+  Working(true, true);
+}
+
+void successSlowSilent()
+{
+  Successing(true, true);
+}
+
+void alertSlowSilent()
+{
+  Alerting(true, true);
 }

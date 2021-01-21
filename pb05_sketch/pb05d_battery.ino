@@ -1,25 +1,21 @@
-void battery_alert() {
+void battery_alert()
+{
   // Low Battery
-  Serial.println("");
-  Serial.print("Battery level: "); Serial.print(blevel); Serial.print("%"); Serial.print(" / "); Serial.print(bvolt); Serial.println(" v");
-  Serial.println("");
+  Serial.printf("\nBattery level: %d%% / %.2f v\n", blevel, bvolt);
 
-  var = 0;
-
-  if (blevel < 10) {
-
+  if (blevel < 10)
+  {
     Serial.println("Low Battery");
 
     int battLowCount = 0;
 
-    while (battLowCount < 3) {
-
+    while (battLowCount < 3)
+    {
       workingFast();
       successFast();
       alertFast();
 
-      battLowCount ++;
-
+      battLowCount++;
     }
 
     alertSlow();
@@ -30,21 +26,24 @@ void battery_alert() {
     workingSlowSilent();
     Serial.println("I'm out of energy. Going to sleep. Let me recharge my battery...PLEASE!");
     ESP.deepSleep(0);
-
   }
   // Fully Charged Battery
-  else if (blevel > 98) {
-    Serial.println("Battery Is Charged");
-    successSlow();
+  else
+  {
+    if (blevel > 98)
+    {
+      Serial.println("Battery Is Charged");
+      successSlow();
+    }
+    else
+    {
+      // Do nothing if battery is neither fully charged or low!
+    }
   }
-  else {
-    // Do nothing if battery is neither fully charged or low!
-  }
-
 }
 
-void battery_level() {
-
+void battery_level()
+{
   // read the battery level from the ESP8266 analog in pin.
   // analog read level is 10 bit 0-1023 (0V-1V).
   // our 1M & 220K voltage divider takes the max
@@ -60,5 +59,4 @@ void battery_level() {
   xbvolt = map(xlevel, 58000, 77400, 314, 420);
   bvolt = xbvolt / 100;
   battery_alert();
-
 }
