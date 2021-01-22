@@ -1,10 +1,10 @@
-#ifndef FETCH_H
-#define FETCH_H
+#ifndef _PB05E_FETCH_H
+#define _PB05E_FETCH_H
 
 #include <Arduino.h>
 #include <ESP8266HTTPClient.h>
 
-#include "certStore.h"
+#include "pb05f_certStore.h"
 
 class HTTPRequest
 {

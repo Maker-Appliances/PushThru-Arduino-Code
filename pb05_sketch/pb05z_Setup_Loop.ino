@@ -1,5 +1,5 @@
-#include "fetch.h"
-#include "timeSync.h"
+#include "pb05e_fetch.h"
+#include "pb05h_timeSync.h"
 
 void setup()
 {
@@ -17,7 +17,11 @@ void setup()
     battery_level();
   }
 
-  connectToWifi();
+  if (connectToWifi() == false)
+  {
+    Serial.println("Can't connect WiFi!\nNigth!");
+    ESP.deepSleep(0);
+  }
   workingSlowSilent();
 
   timeSync.begin();
@@ -25,7 +29,7 @@ void setup()
 
 void loop()
 {
-  Serial.println("Try make Pantri post request ...");
+  Serial.println("Try to make Pantri post request ...");
   uint8_t macAddress[WL_MAC_ADDR_LENGTH];
   WiFi.macAddress(macAddress);
   if (MakePantriPostRequest(macAddress))
