@@ -1,4 +1,4 @@
-#include "timeSync.h"
+#include "pb05h_timeSync.h"
 
 #include <TZ.h>
 #include <coredecls.h>

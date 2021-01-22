@@ -2,6 +2,7 @@
 //the class is completely overwritten by using the same preprocessor
 //include guard
 
+//This define should be the same as in BearSSL library to override it
 #ifndef _CERTSTORE_BEARSSL_H
 #define _CERTSTORE_BEARSSL_H
 

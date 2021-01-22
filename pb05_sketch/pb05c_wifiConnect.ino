@@ -39,7 +39,7 @@ void wifiErrorDiag()
 
 int wifiRetry = 1;
 
-void connectToWifiSilent()
+bool connectToWifiSilent()
 {
   Serial.print("");
   Serial.print("Connecting to ");
@@ -76,13 +76,11 @@ void connectToWifiSilent()
     Serial.println("Setup Complete");
     successSlow();
     successSlow();
-    //Now to push a REST API Post to the server
-    //httpsPost();
+    
+    return true;
   }
-
   else
   {
-
     wifiErrorDiag();
   };
 
@@ -123,11 +121,19 @@ void connectToWifiSilent()
     workingSlowSilent();
     ESP.deepSleep(0);
   }
+  
+  return false;
 }
 
 // use the ssid and password to connect to the your WiFi
-void connectToWifi()
+bool connectToWifi()
 {
+  if (strnlen(ssid, 256) == 0)
+  {
+    Serial.println("WiFi SSID wasn't set up. I just can't connect.  I give up.  I'm going back to sleep.");
+    return false;
+  }
+
   Serial.printf("\nConnecting to %s\n", ssid);
 
   // Disable AP_SSID publication in Client mode
@@ -160,15 +166,13 @@ void connectToWifi()
 
     successSlow();
 
-    //Now to push a REST API Post to the server
-    //httpsPost();
+    return true;
   }
-  else
-  { // else we never connected to the network, inform the user of the error using the buzzer and LED
-    wifiErrorDiag();
-    delay(1000);
 
-    Serial.println("Try to connect WiFi silently...");
-    connectToWifiSilent();
-  }
+  // else we never connected to the network, inform the user of the error using the buzzer and LED
+  wifiErrorDiag();
+  delay(1000);
+
+  Serial.println("Try to connect WiFi silently...");
+  return connectToWifiSilent();
 }

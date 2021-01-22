@@ -1,5 +1,5 @@
-#ifndef CERT_H
-#define CERT_H
+#ifndef _PB05G_CERTIFICATES_H
+#define _PB05G_CERTIFICATES_H
 
 #include <Arduino.h>
 
